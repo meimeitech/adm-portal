@@ -19,7 +19,7 @@
     <div class="main-wrapper">
       <!-- 头部 -->
       <t-header>
-        <!-- 用户信息 -->
+        <!-- 用户信息   -->
         <!--<div class="userBox" slot='right'>-->
           <!--&lt;!&ndash;<Avatar class="user-head" icon="person"></Avatar>&ndash;&gt;-->
           <!--<Dropdown transfer class="user-drop">-->
