@@ -1,5 +1,5 @@
 <template>
-  <iframe :src="toPath" width="100%" frameborder="0" scrolling="no" id="external-frame"></iframe>
+  <iframe :src="toPath" width="100%" frameborder="0" id="external-frame"></iframe>
 </template>
 
 <script type="text/ecmascript-6">

@@ -40,8 +40,9 @@ let iteratorInitMenuJsTree = (parent, children, deployUrl) => {
 };
 
 let getMenuList = async (baseUrl, system) => {
+  console.log(getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system));
   // userInfo.authId
-  if (!getStore(mainConst.ADM_MENUS_AUTHID) && !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID)) + '-' + system) {
+  if (!getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system)) {
     await roleMenuList(baseUrl, {
       system: system
     }).then(r => {
@@ -53,7 +54,7 @@ let getMenuList = async (baseUrl, system) => {
 };
 
 let getMenusFromCookies = (funMenus, system) => {
-  if (!getStore(mainConst.ADM_MENUS_AUTHID) && !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID)) + '-' + system) {
+  if (!getStore(mainConst.ADM_MENUS_AUTHID) || !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system)) {
     setTimeout(() => {
         getMenusFromCookies(funMenus, system);
     }, 100);
