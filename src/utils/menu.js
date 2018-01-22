@@ -41,24 +41,24 @@ let iteratorInitMenuJsTree = (parent, children, deployUrl) => {
 
 let getMenuList = async (baseUrl, system) => {
   // userInfo.authId
-  if (!getStore(mainConst.ADM_MENUS_AUTHID) && !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID))) {
+  if (!getStore(mainConst.ADM_MENUS_AUTHID) && !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID)) + '-' + system) {
     await roleMenuList(baseUrl, {
       system: system
     }).then(r => {
       iteratorInitMenuJsTree(menus, r.body.children, '');
-      setStore(mainConst.ADM_MENUS + r.body.text, JSON.stringify(menus));
+      setStore(mainConst.ADM_MENUS + r.body.text + '-' + system, JSON.stringify(menus));
       setStore(mainConst.ADM_MENUS_AUTHID, r.body.text);
     });
   }
 };
 
-let getMenusFromCookies = (funMenus) => {
-  if (!getStore(mainConst.ADM_MENUS_AUTHID) && !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID))) {
+let getMenusFromCookies = (funMenus, system) => {
+  if (!getStore(mainConst.ADM_MENUS_AUTHID) && !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID)) + '-' + system) {
     setTimeout(() => {
-        getMenusFromCookies(funMenus);
+        getMenusFromCookies(funMenus, system);
     }, 100);
   } else {
-    funMenus(JSON.parse(getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID))));
+    funMenus(JSON.parse(getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system)));
   }
 };
 

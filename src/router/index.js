@@ -6,7 +6,7 @@ import layout from '../components/layout/layout.vue';
 import {resource, user, role, roleResource, log} from '../views/sys';
 import iframe from '../components/iframe';
 import {index, login, _404} from '../views';
-import * as mainConst from '../utils/const';
+import * as myconst from '../utils/const';
 // import {LoadingBar} from 'iview';
 
 Vue.use(Router);
@@ -88,18 +88,17 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  Cookies.set(mainConst.ADM_REFER, from.fullPath);
-  let sessionId = Cookies.get(mainConst.ADM_SESSION_ID);
+  Cookies.set(myconst.ADM_REFER, from.fullPath);
+  let sessionId = Cookies.get(myconst.ADM_SESSION_ID);
   if (sessionId) { // 如果是登陆状态
     store.dispatch('addTab', to);
-    (to.path === '/' || to.path === '/login') ? next({path: mainConst.ADM_INDEX}) : next();
+    (to.path === '/' || to.path === '/login') ? next({path: myconst.ADM_INDEX}) : next();
   } else { // 不是登陆状态
     to.path !== '/login' ? next({path: '/login'}) : next();
   }
 });
 
 router.afterEach(() => {
-  // LoadingBar.finish();
   window.scrollTo(0, 0);
 });
 

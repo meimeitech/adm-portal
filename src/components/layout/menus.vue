@@ -40,7 +40,7 @@
       let self = this;
       getMenusFromCookies(function (menus) {
         self.menus = menus;
-      });
+      }, this.$store.state.app.system);
     },
     components: {
       'my-menu': menu
