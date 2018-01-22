@@ -18,7 +18,6 @@ const router = new Router({
       title: '首页 '
     },
     component: layout,
-    redirect: mainConst.ADM_INDEX,
     children: [{
       path: '/iframe',
       meta: {
@@ -89,12 +88,11 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  // LoadingBar.start();
   Cookies.set(mainConst.ADM_REFER, from.fullPath);
   let sessionId = Cookies.get(mainConst.ADM_SESSION_ID);
   if (sessionId) { // 如果是登陆状态
     store.dispatch('addTab', to);
-    to.path === '/login' ? next({path: mainConst.ADM_INDEX}) : next();
+    (to.path === '/' || to.path === '/login') ? next({path: mainConst.ADM_INDEX}) : next();
   } else { // 不是登陆状态
     to.path !== '/login' ? next({path: '/login'}) : next();
   }
