@@ -16,7 +16,7 @@
     name: 'menus',
     data() {
       return {
-        theme: 'dark', // 主题
+        theme: 'dark', //  主题
         menus: [] // 导航菜单
       };
     },
