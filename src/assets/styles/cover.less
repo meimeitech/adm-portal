@@ -4,7 +4,7 @@
 @transition-time: .05s;
 @ease-in-out: ease-out;
 //修改table 隔行换色背景
-@table-td-stripe-bg:#F5F5F7;
+@table-td-stripe-bg: #F5F5F7;
 //表头的颜色
 @table-thead-bg: #f3f3f3;
 //设计的样式 F5F5F7;
@@ -12,12 +12,12 @@
 //card 圆角大小
 @card-radius: 6px;
 // 字体
-@font-family: "PingFangSC-Regular","Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+@font-family: "PingFangSC-Regular", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 // 输入框系列的高度 iview 默认是32  设计是30
 @input-height-base: 30px;
 
 //菜单字体大小
-@meun-font-size:12px;
+@meun-font-size: 14px;
 
 //覆盖组件的样式
 //导航菜单的样式
@@ -26,55 +26,49 @@
   .ivu-menu-dark {
     background: transparent !important;
   }
-  .ivu-menu-vertical .ivu-menu-item, .ivu-menu-vertical .ivu-menu-submenu-title {
-    text-align: left;
-  }
-  .ivu-menu-submenu-title > i, .ivu-menu-submenu-title span > i {
-    margin-right: 14px;
-  }
-  .ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item {
-    padding-left: 30px;
-  }
-  .ivu-menu-vertical .ivu-menu-item, .ivu-menu-vertical .ivu-menu-submenu-title {
-    padding: 14px;
-  }
-  .ivu-menu-item > i {
-    margin-right: 14px;
-  }
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
-    color: #3399ff;
-    //border-left: 2px solid #3399ff;
-    background: #313540 !important;
-  }
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
-    background: #333;
-  }
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened .ivu-menu-submenu-title {
-    background: #5f5f5f;
-  }
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
-  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
-  .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
-  .ivu-menu-light.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu){
-    color: #2d8cf0;
-    //border-left: 2px solid #2d8cf0;
-    border-right: 0px solid transparent;
-    &:before{
-      content: '';
-      position: absolute;
-      left:0;
-      top: 0;
-      width: 2px;
-      height: 100%;
-      background: #2d8cf0;
+  .ivu-menu-dark.ivu-menu-vertical {
+    .ivu-menu-submenu {
+      .ivu-menu-item-active, .ivu-menu-item-active:hover {
+        color: #3399ff;
+        //border-left: 2px solid #3399ff;
+        background: #363E4F !important;
+      }
     }
-
+    /*
+    * 菜单展开时的状态-start
+    */
+    .ivu-menu-opened .ivu-menu-submenu-title {
+      background: #363E4F;
+    }
+    .ivu-menu-opened > .ivu-menu-submenu-title {
+      background: #2C3542;
+      color: #b4bcc8;
+    }
+    // 打开时的小箭头
+    .ivu-menu-opened .ivu-menu-submenu-title-icon {
+      transform: rotate(0deg);
+    }
+    .ivu-menu-opened > .ivu-menu-submenu-title > .ivu-menu-submenu-title-icon {
+      transform: rotate(180deg);
+    }
+    /*
+    * 菜单展开时的状态-end
+    */
   }
 
   .ivu-menu-vertical {
     font-size: @meun-font-size;
+    // 二级菜单
+    .ivu-menu-submenu .ivu-menu-item {
+      padding-left: 30px;
+    }
+    // 三级菜单
+    .active-2 > div > .ivu-menu-item {
+      padding-left: 50px;
+    }
     .ivu-menu-submenu-title {
       padding: 14px 0 12px 22px;
+      text-align: left;
       & > i,
       span > i {
         margin-right: 12px;
@@ -83,8 +77,40 @@
     .ivu-menu-item {
       font-size: @meun-font-size;
       padding: 14px 0 12px 22px;
+      text-align: left;
+      & > i {
+        margin-right: 14px;
+      }
     }
   }
+
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+  .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu),
+  .ivu-menu-light.ivu-menu-vertical .ivu-menu-item-active:not(.ivu-menu-submenu),
+  .ivu-menu-light.ivu-menu-vertical .ivu-menu-submenu-title-active:not(.ivu-menu-submenu) {
+    color: #2d8cf0;
+    background: #3e4b5c !important;
+    //border-left: 2px solid #2d8cf0;
+    border-right: 0px solid transparent;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: #2d8cf0;
+    }
+
+  }
+  .ivu-menu-opened {
+    .ivu-menu {
+      .ivu-menu-submenu-title {
+        padding-left: 30px;
+      }
+    }
+  }
+
   //.ivu-menu-vertical {
   //  font-size: 12px;
   //  .ivu-menu-submenu-title {
@@ -122,68 +148,69 @@
   //  }
   //}
 
-
-.ivu-table:before{
-  background: none;
-}
-.ivu-table:after{
-  background: none;
-}
-//badge
-.ivu-badge-count{
-  border:none;
-  box-shadow: none;
-  min-width:18px;
-  height:18px;
-}
-//登录框背景
-.login-modal {
-  .ivu-modal-content{
-    background-color: rgba(255,255,255,.95)!important;
+  .ivu-table:before {
+    background: none;
   }
-  .ivu-modal-body{
+  .ivu-table:after {
+    background: none;
+  }
+  //badge
+  .ivu-badge-count {
+    border: none;
+    box-shadow: none;
+    min-width: 18px;
+    height: 18px;
+  }
+  //登录框背景
+  .login-modal {
+    .ivu-modal-content {
+      background-color: rgba(255, 255, 255, .95) !important;
+    }
+    .ivu-modal-body {
       padding-bottom: 0
+    }
   }
-}
 
 }
+
 //去掉表格的边框
-.ivu-table-wrapper{
-  border:none;
-  box-shadow: 0 0 4px 0  #dddeee;
-  &.ivu-table-round{
+.ivu-table-wrapper {
+  border: none;
+  box-shadow: 0 0 4px 0 #dddeee;
+  &.ivu-table-round {
     border-radius: 12px;
   }
 }
+
 // 表格 样式重置
-.ivu-table{
-  @table-radius:12px;
+.ivu-table {
+  @table-radius: 12px;
   //无圆角时表头背景颜色  #F3F3F3;
-  .ivu-table-fixed-header th,.ivu-table-header th{
+  .ivu-table-fixed-header th, .ivu-table-header th {
     height: 40px;
     background: @table-thead-bg;
     color: #333333;
   }
   //圆角时表头背景颜色  #F5F5F7;
 
-  &-round{
+  &-round {
     .ivu-table {
       background: transparent;
     }
-    .ivu-table-fixed-header th,.ivu-table-header th{
+    .ivu-table-fixed-header th, .ivu-table-header th {
       height: 40px;
       background: #F5F5F7;
       color: #333333;
     }
 
-    .ivu-table-header{
+    .ivu-table-header {
       border-top-left-radius: @table-radius;
       border-top-right-radius: @table-radius;
     }
     //没有 固定'fixed' 列时 表格的圆角
-    .ivu-table-header{
+    .ivu-table-header {
       background: transparent;
-      tr:first-child{
+      tr:first-child {
         th:first-child {
           border-top-left-radius: @table-radius;
         }
@@ -193,10 +220,10 @@
       }
     }
 
-//    左侧固定
-    .ivu-table-fixed{
-      .ivu-table-fixed-header{
-        tr:first-child{
+    //    左侧固定
+    .ivu-table-fixed {
+      .ivu-table-fixed-header {
+        tr:first-child {
           th:first-child {
             border-top-left-radius: @table-radius;
           }
@@ -205,8 +232,8 @@
     }
     //右侧固定
     .ivu-table-fixed-right {
-      .ivu-table-fixed-header{
-        tr:first-child{
+      .ivu-table-fixed-header {
+        tr:first-child {
           th:first-child {
             border-top-right-radius: @table-radius;
           }
@@ -214,80 +241,83 @@
       }
     }
   }
-  .ivu-table-tbody{
+  .ivu-table-tbody {
     color: #666;
   }
-  .ivu-table-row{
-    td{
-      height:30px;
+  .ivu-table-row {
+    td {
+      height: 30px;
     }
-    .ivu-table-cell{
+    .ivu-table-cell {
       padding-left: 18px;
       padding-right: 18px;
       //表格中的操作栏位的按钮  讲padding 上下改为0 让按钮图标尽量大
-      .ivu-btn{
-        padding:0 15px;
+      .ivu-btn {
+        padding: 0 15px;
         font-size: 14px;
       }
     }
   }
 
   .ivu-table-tip {
-    tr,td{
-      height:30px;
+    tr, td {
+      height: 30px;
     }
   }
 }
 
 //card 片的css重置
-.ivu-card{
+.ivu-card {
   border-radius: @card-radius;
-  .ivu-card-head{
+  .ivu-card-head {
     background: #F5F5F7;
-    border-radius: @card-radius @card-radius 0 0 ;
+    border-radius: @card-radius @card-radius 0 0;
     height: 40px;
     padding: 12px;
-    p{
+    p {
       font-size: 12px;
       color: #333;
       line-height: 16px;
     }
   }
   //如果card的头部有查询条件可以给 card 加上 query-head 类来重新定制card的样式
-  &.query-head{
-    .ivu-card-head{
+  &.query-head {
+    .ivu-card-head {
       padding: 5px 12px;
-      p.date{
-        height:30px;
+      p.date {
+        height: 30px;
       }
     }
   }
-  .ivu-card-extra{
-    top:4px;
+  .ivu-card-extra {
+    top: 4px;
     right: 12px;
-    button,.ivu-radio-group{
-      height:30px;
+    button, .ivu-radio-group {
+      height: 30px;
     }
   }
-  .ivu-card-body{
+  .ivu-card-body {
     padding: 12px;
   }
 }
 
 .ivu-form {
-  .ivu-form-item-label{
-    padding:8px 12px 10px 0;
+  .ivu-form-item-label {
+    padding: 8px 12px 10px 0;
   }
 }
+
 //表单项的样式重置
-.ivu-form-item{
+.ivu-form-item {
   margin-bottom: 20px;
 }
-.ivu-form-item-content{
+
+.ivu-form-item-content {
   //此处不能指定 高度 textarea多行的撑不开
   //height: 30px;
   line-height: 30px;
 }
+
 //.ivu-input{
 //  height: 30px;
 //}

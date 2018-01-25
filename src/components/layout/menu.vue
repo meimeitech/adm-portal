@@ -6,7 +6,7 @@
           <Icon :type="item.icon?item.icon:'ios-browsers'"></Icon>
           <span class="menu-ellipsis">{{item.name}}</span>
         </template>
-        <my-menu :menus="item.children"></my-menu>
+        <my-menu :menus="item.children" :level="level*1 + 1" v-bind:class="[index > 0 ? activeClass + level : '']"></my-menu>
       </Submenu>
       <Menu-item :name="routerFilter(item.deployUrl, item.url, item.name)" v-else>
         <Icon :type="item.icon?item.icon:'chevron-right'"></Icon>
@@ -22,7 +22,12 @@
   import menu from './menu.vue';
   export default {
     name: 'my-menu',
-    props: ['menus'],
+    props: ['menus', 'level'],
+    data() {
+      return {
+        activeClass: 'active-'
+      };
+    },
     methods: {
         /**
          * 选择菜单

@@ -167,6 +167,10 @@
     left: 0;
     bottom: 0;
     right: 0px;
+    /*隐藏滚动条，当IE下溢出，仍然可以滚动*/
+    -ms-overflow-style:none;
+    /*火狐下隐藏滚动条*/
+    overflow:-moz-scrollbars-none;
     &::-webkit-scrollbar { /*隐藏滚轮*/
       display: none;
       width: 4px;
@@ -301,9 +305,9 @@
   height: -webkit-calc(~'100% - 35px');
   height: -moz-calc(~'100% - 35px');
   height: -ms-calc(~'100% - 35px');
-  overflow: auto;
+  //overflow: auto;
   text-align: left;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 #sticker {
