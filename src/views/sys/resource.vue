@@ -2,7 +2,7 @@
   <div id="resource" class="top-30">
     <Row :gutter="10">
       <iCol span="7">
-        <Card style="overflow-y: scroll;min-height: 450px;">
+        <Card style="overflow-y: scroll;height: 600px;">
           <p slot="title">
             <Icon type="ios-list-outline"></Icon>
              资源树

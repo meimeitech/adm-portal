@@ -1,5 +1,7 @@
 <template>
-  <iframe :src="toPath" width="100%" frameborder="0" id="external-frame"></iframe>
+  <div>
+    <iframe :src="toPath" width="100%" frameborder="0" id="external-frame" style="min-height: 700px;padding-bottom: 10px;"></iframe>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -45,9 +47,7 @@
 </script>
 
 <style>
-  #external-frame{
-    min-height: 800px;
-  }
+
   .container{
     background: #ffffff;
   }
