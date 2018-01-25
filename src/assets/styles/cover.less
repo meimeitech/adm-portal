@@ -17,12 +17,17 @@
 @input-height-base: 30px;
 
 //菜单字体大小
-@meun-font-size: 14px;
+@meun-font-size: 12px;
 
 //覆盖组件的样式
 //导航菜单的样式
 #app {
-
+  .ivu-menu {
+    font-size: @meun-font-size;
+  }
+  .side-wrapper .navbar .ivu-menu-submenu-title .menu-ellipsis {
+    width: 100px;
+  }
   .ivu-menu-dark {
     background: transparent !important;
   }
@@ -64,7 +69,7 @@
     }
     // 三级菜单
     .active-2 > div > .ivu-menu-item {
-      padding-left: 50px;
+      padding-left: 50px!important;
     }
     .ivu-menu-submenu-title {
       padding: 14px 0 12px 22px;
