@@ -101,7 +101,7 @@
   import menuShrink from './menuShrink.vue';
   import Cookies from 'js-cookie';
   import {clearStore} from '../../utils/storage';
-  import {updatePwd, getUserInfo} from '../../utils/interface';
+  import {updatePwd, getUserInfo, logout} from '../../utils/interface';
 
   export default {
     name: 'layout',
@@ -217,9 +217,11 @@
       /**
        *退出
        */
-      logout() {
+      logout: async function () {
+        await logout(this.$store.state.app.baseUrl);
         Cookies.remove(mainConst.ADM_SESSION_ID);
         Cookies.remove(mainConst.ADM_USER_INFO);
+        Cookies.remove(mainConst.ADM_REMEMBER_ME);
         this.$router.push('/login');
         this.$Message.success('退出成功');
       },

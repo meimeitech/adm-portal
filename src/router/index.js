@@ -89,10 +89,17 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   Cookies.set(myconst.ADM_REFER, from.fullPath);
+  console.log(from.fullPath);
   let sessionId = Cookies.get(myconst.ADM_SESSION_ID);
-  if (sessionId) { // 如果是登陆状态
+  // 记住密码
+  let rememberKey = Cookies.get(myconst.ADM_REMEMBER_ME);
+  if (sessionId || rememberKey) { // 如果是登陆状态
     store.dispatch('addTab', to);
-    (to.path === '/' || to.path === '/login') ? next({path: myconst.ADM_INDEX}) : next();
+    if (window !== top) {
+      (to.path === '/' || to.path === '/login') ? next({path: '/login'}) : next();
+    } else {
+      (to.path === '/' || to.path === '/login') ? next({path: myconst.ADM_INDEX}) : next();
+    }
   } else { // 不是登陆状态
     to.path !== '/login' ? next({path: '/login'}) : next();
   }

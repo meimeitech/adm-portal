@@ -112,11 +112,15 @@
             let response = await login({
               username: this.formValidate.username,
               password: this.formValidate.password
+//              remember: true
             }, this.$store.state.app.baseUrl);
             if (response && response.header) {
               if (response.header.code === '0') {
                 this.$Message.success('登录成功!');
                 Cookies.set(mainConst.ADM_SESSION_ID, response.body);
+//                debugger;
+//                Cookies.set(mainConst.ADM_SESSION_ID, response.body.sessionId);
+//                Cookies.set(mainConst.ADM_REMEMBER_ME, response.body.rememberKey);
                 let refer = Cookies.get(mainConst.ADM_REFER);
                 if (refer && refer !== '/') {
                   this.$router.push(Cookies.get(mainConst.ADM_REFER));

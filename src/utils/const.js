@@ -9,6 +9,9 @@ export const ADM_REFER = 'refer';
 // sessionId
 export const ADM_SESSION_ID = 'sessionId';
 
+// sessionId
+export const ADM_REMEMBER_ME = 'rememberKey';
+
 // 用户缓存
 export const ADM_USER_INFO = 'userInfo';
 

@@ -12,6 +12,10 @@ export const login = (data, baseUrl) => fetch('/login', {
   baseUrl: baseUrl
 }, 'POST');
 
+export const logout = (baseUrl) => fetch('/logout', {
+  baseUrl: baseUrl
+}, 'GET');
+
 // 角色列表
 export const roleSearch = (data, baseUrl) => fetch(PLATFORM_SYS + '/role/list', {
   reqBody: data,

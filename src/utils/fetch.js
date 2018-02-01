@@ -19,6 +19,7 @@ let commonDataStr = () => {
     'xDevice': '',
     'xService': '',
     'xToken': Cookies.get(mainConst.ADM_SESSION_ID) || '',
+    'rememberKey': Cookies.get(mainConst.ADM_REMEMBER_ME) || '',
     'xTimestamp': new Date().getTime(),
     'xRepeat': 0,
     'xSignature': ''
@@ -34,6 +35,13 @@ const codeEvents = (respose, codeEvents) => {
   if (respose.code === '-101') { // 请登录
     Cookies.remove(mainConst.ADM_SESSION_ID);
     router.push('/login');
+    return false;
+  }
+  if (respose.code === '-8') { // 失败
+    if (!(codeEvents && codeEvents.code9 && codeEvents.code9())) {
+      Cookies.remove(mainConst.ADM_REMEMBER_ME);
+      Message.error(respose.message);
+    }
     return false;
   }
   if (respose.code === '-9') { // 失败
