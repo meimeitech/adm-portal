@@ -31,7 +31,13 @@
   .ivu-menu-dark {
     background: transparent !important;
   }
+  .active-1 > div, .active-2 > div {
+    background-color: #0B1732;
+  }
   .ivu-menu-dark.ivu-menu-vertical {
+    .ivu-menu-item, .ivu-menu-submenu-title {
+      color: #5E6F95;
+    }
     .ivu-menu-submenu {
       .ivu-menu-item-active, .ivu-menu-item-active:hover {
         color: #3399ff;
@@ -43,18 +49,12 @@
     * 菜单展开时的状态-start
     */
     .ivu-menu-opened .ivu-menu-submenu-title {
-      background: #363E4F;
+      background: #0B1732;
+      border-left: 1px solid #0B1732;
     }
     .ivu-menu-opened > .ivu-menu-submenu-title {
-      background: #2C3542;
-      color: #b4bcc8;
-    }
-    // 打开时的小箭头
-    .ivu-menu-opened .ivu-menu-submenu-title-icon {
-      transform: rotate(0deg);
-    }
-    .ivu-menu-opened > .ivu-menu-submenu-title > .ivu-menu-submenu-title-icon {
-      transform: rotate(180deg);
+      //background: #0B1732;
+      color:  #5583FF;
     }
     /*
     * 菜单展开时的状态-end

@@ -1,7 +1,7 @@
 <template>
   <div class="navbar" :class="theme">
     <Menu width="220" ref="menu" :theme="theme" :open-names="[$route.meta.prevLevelName]" :active-name="$route.path"
-          @on-select="selectFn">
+          @on-select="selectFn" accordion>
       <!--迭代 支持多级菜单-->
       <my-menu :menus="menus" :level="1"></my-menu>
     </Menu>
