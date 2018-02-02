@@ -15,9 +15,9 @@ let iteratorInitMenuJsTree = (parent, children, deployUrl) => {
     let icon = '';
     try {
       icon = JSON.parse(children[i].li_attr.style).className;
-      console.log(icon);
+      // console.log(icon);
     } catch (err) {
-      console.log(children[i].li_attr.name + '样式转换异常！');
+      // console.log(children[i].li_attr.name + '样式转换异常！');
     }
     // deployUrl 部署路径
     if (children[i].li_attr.modType === '1') {
@@ -40,7 +40,7 @@ let iteratorInitMenuJsTree = (parent, children, deployUrl) => {
 };
 
 let getMenuList = async (baseUrl, system) => {
-  console.log(getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system));
+  // console.log(getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system));
   // userInfo.authId
   if (!getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system)) {
     await roleMenuList(baseUrl, {
