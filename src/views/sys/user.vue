@@ -467,7 +467,6 @@
             key: 'action',
             width: 320,
             align: 'center',
-            fixed: 'right',
             render: (h, params) => {
               return h('div', [
                 h('Button', {
