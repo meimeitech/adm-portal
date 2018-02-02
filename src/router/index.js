@@ -88,7 +88,12 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  Cookies.set(myconst.ADM_REFER, from.fullPath);
+  // 存
+  if (from.fullPath === '/') {
+    Cookies.set(myconst.ADM_REFER, myconst.ADM_INDEX);
+  } else {
+    Cookies.set(myconst.ADM_REFER, from.fullPath);
+  }
   console.log(from.fullPath);
   let sessionId = Cookies.get(myconst.ADM_SESSION_ID);
   // 记住密码
