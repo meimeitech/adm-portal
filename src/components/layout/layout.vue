@@ -222,6 +222,7 @@
         Cookies.remove(mainConst.ADM_SESSION_ID);
         Cookies.remove(mainConst.ADM_USER_INFO);
         Cookies.remove(mainConst.ADM_REMEMBER_ME);
+        clearStore();
         this.$router.push('/login');
         this.$Message.success('退出成功');
       },
