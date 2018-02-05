@@ -223,6 +223,7 @@
         Cookies.remove(mainConst.ADM_USER_INFO);
         Cookies.remove(mainConst.ADM_REMEMBER_ME);
         this.$router.push('/login');
+        this.clearStorage();
         this.$Message.success('退出成功');
       },
       clearStorage() {
