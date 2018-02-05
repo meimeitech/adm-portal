@@ -57,7 +57,7 @@ let getMenusFromCookies = (funMenus, system) => {
   if (!getStore(mainConst.ADM_MENUS_AUTHID) || !getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system)) {
     setTimeout(() => {
         getMenusFromCookies(funMenus, system);
-    }, 100);
+    }, 500);
   } else {
     funMenus(JSON.parse(getStore(mainConst.ADM_MENUS + getStore(mainConst.ADM_MENUS_AUTHID) + '-' + system)));
   }
