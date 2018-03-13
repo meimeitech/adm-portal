@@ -8,7 +8,8 @@
         </template>
         <my-menu :menus="item.children" :level="level*1 + 1" v-bind:class="activeClass + level"></my-menu>
       </Submenu>
-      <Menu-item :name="routerFilter(item.deployUrl, item.url, item.name)" v-else>
+      <Menu-item :name="routerFilter(item.deployUrl, item.url, item.name)"
+                 @click.native="handleClick(item.deployUrl, item.url, item.name)" v-else>
         <Icon :type="item.icon?item.icon:'chevron-right'"></Icon>
         <span class="menu-ellipsis">{{item.name}}</span>
       </Menu-item>
@@ -42,10 +43,10 @@
         },
         routerFilter(deployUrl, url, name) {
           if (url && (url.indexOf('http://') >= 0 || url.indexOf('https://') >= 0)) {
-            return '/iframe?name=' + name + '&path=' + url;
+            return '/center?name=' + name + '&path=' + url;
           } else {
             deployUrl = deployUrl ? deployUrl : domain();
-            return '/iframe?name=' + name + '&path=' + deployUrl + '#' + url;
+            return '/center?name=' + name + '&path=' + deployUrl + '#' + url;
           }
         }
     },

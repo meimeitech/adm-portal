@@ -1,16 +1,16 @@
 <template>
   <div>
-    <iframe :src="toPath" width="100%" frameborder="0" id="external-frame" style="min-height: 700px;padding-bottom: 10px;"></iframe>
+    <iframe :src="src" width="100%" frameborder="0" :id="'external-frame-' + index" style="min-height: 700px;padding-bottom: 10px;"></iframe>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-  import Cookies from 'js-cookie';
-  import * as mainConst from '../../utils/const';
+  import tabs from '../../utils/tabs';
   export default {
+    name: 'myIframe',
     data() {
       return {
-        toPath: ''
+//        toPath: 'https://www.baidu.com/'
       };
     },
     methods: {
@@ -22,32 +22,64 @@
           }
         }
       },
-      getPath(path, title) {
-        let ts = new Date().getTime();
-        if (path.split('?').length > 1) {
-          this.toPath = path + '&sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID) + '&ts=' + ts;
-        } else {
-          this.toPath = path + '?sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID) + '&ts=' + ts;
+      receiveMessageFromIframePage(event) {
+        if (!event.data.msg) {
+          return;
         }
-        if (title) {
-          document.title = title;
+//        console.log('receiveMessageFromIframePage', event.data.msg);
+        let msg = JSON.parse(event.data.msg);
+        if (msg.type === 'add') { // 添加新tab页签
+          if (tabs('exists', msg.data.name)) {
+            this.$store.dispatch('tabInit', tabs('select', msg.data.name));
+            let tab = tabs('getSelected');
+            this.$store.dispatch('tabInit', tabs('update', {
+              tab: tab,
+              src: msg.data.src
+            }));
+          } else {
+            this.$store.dispatch('tabInit', tabs('add', {
+              title: msg.data.name,
+              closeable: true,
+              component: 'iframe',
+              src: msg.data.src
+            }));
+          }
+          this.moveEvent();
+        } else if (msg.type === 'close') {
+          this.$store.dispatch('tabInit', tabs('close', msg.data.name));
+          this.moveEvent();
+        } else if (msg.type === 'refresh') {
+          this.$store.dispatch('tabInit', tabs('update', {
+            tab: msg.data.name
+          }));
+          this.moveEvent();
         }
+      },
+      moveEvent() {
+        let self = this;
+        setTimeout(() => {
+          self.$store.dispatch('tabSelectedIndex', tabs('getSelectedTabIndex'));
+        }, 100);
       }
     },
     mounted() {
-      this.setIframeHeight(document.getElementById('external-frame'));
-      this.getPath(decodeURIComponent(window.location.hash.split('path=')[1]), decodeURIComponent(window.location.hash.split('name=')[1]).split('&path=')[0]);
+      this.setIframeHeight(document.getElementById('external-frame-' + this.index));
+      // 监听message事件
+      window.addEventListener('message', this.receiveMessageFromIframePage, false);
     },
     watch: {
-      '$route' (to, from) {
-        this.getPath(decodeURIComponent(window.location.hash.split('path=')[1]), to.query.name);
+      'refresh': function (newValue, oldVale) {
+        if (newValue) {
+          // 刷新指令
+          document.getElementById('external-frame-' + this.index).src = this.src;
+        }
       }
-    }
+    },
+    props: ['src', 'refresh', 'index']
   };
 </script>
 
 <style>
-
   .container{
     background: #ffffff;
   }

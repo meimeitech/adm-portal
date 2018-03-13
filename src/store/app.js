@@ -22,6 +22,8 @@ const app = {
       show: false,
       params: ''
     },
+    tabs: [],
+    tabSelectedIndex: 0,
     menuTabs: [{
       title: '首页',
       fullPath: mainConst.ADM_INDEX,
@@ -102,6 +104,12 @@ const app = {
     INIT_TAB: (state) => {
       state.menuTabs = getStore('menuTabs') ? JSON.parse(getStore('menuTabs')) : state.menuTabs;
     },
+    TAB_INIT: (state, payload) => {
+      state.tabs = payload;
+    },
+    TABS_SELECTED_INDEX: (state, index) => {
+      state.tabSelectedIndex = index;
+    },
     ADD_TAB: (state, payload) => {
       if (!payload.meta.title) {
         return;
@@ -157,6 +165,12 @@ const app = {
     initTab: ({commit, state}) => {
       commit('INIT_TAB');
     },
+    tabInit: ({commit, state}, payload) => {
+      commit('TAB_INIT', payload);
+    },
+    tabSelectedIndex: ({commit}, index) => {
+      commit('TABS_SELECTED_INDEX', index);
+    },
     addTab: ({commit, state}, router) => {
       commit('INIT_TAB');
       document.title = router.meta.title;
@@ -166,7 +180,6 @@ const app = {
         }
         if (router.path === '/iframe') {
           // console.log(JSON.stringify(n));
-
           let r = {
             title: router.query.name,
             fullPath: router.fullPath,
@@ -175,9 +188,7 @@ const app = {
               title: router.query.name
             }
           };
-
-          // console.log(JSON.stringify(r));
-          if (JSON.stringify(n) === JSON.stringify(r)) {
+          if (JSON.stringify(n) === JSON.stringify(r)) { // tab已存在
             return true;
           } else {
             return false;
@@ -186,7 +197,7 @@ const app = {
           return true;
         }
       });
-      if (pathIndex === -1) {
+      if (pathIndex === -1) { // tab不存在
         commit('ADD_TAB', router);
       }
     },

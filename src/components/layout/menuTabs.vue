@@ -53,18 +53,18 @@
       }
     },
     mounted() {
-      // 窗口改变时改变 menuTabWidth
-      this.$store.dispatch('setMenuTabWidth', this.$refs.elemTabar.offsetWidth);
-      let self = this;
-      window.onresize = function temp() {
-        self.$store.dispatch('setMenuTabWidth', self.$refs.elemTabar.offsetWidth);
-      };
-      // 激活当前tab Menu
-      let index = this.menuTabs.findIndex((n) => {
-        return n.fullPath === self.$router.app._route.fullPath;
-      });
-      let tabs = this.$refs.tabsPageOpened;
-      this.moveToView(tabs[index].$el);
+//      // 窗口改变时改变 menuTabWidth
+//      this.$store.dispatch('setMenuTabWidth', this.$refs.elemTabar.offsetWidth);
+//      let self = this;
+//      window.onresize = function temp() {
+//        self.$store.dispatch('setMenuTabWidth', self.$refs.elemTabar.offsetWidth);
+//      };
+//      // 激活当前tab Menu
+//      let index = this.menuTabs.findIndex((n) => {
+//        return n.fullPath === self.$router.app._route.fullPath;
+//      });
+//      let tabs = this.$refs.tabsPageOpened;
+//      this.moveToView(tabs[index].$el);
     },
     methods: {
       removeOpenTab(index, event) { // 移除tab

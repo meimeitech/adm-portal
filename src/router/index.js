@@ -25,6 +25,13 @@ const router = new Router({
         keepAlive: true
       },
       component: iframe
+    }, {
+      path: '/center',
+      meta: {
+        title: 'center',
+        keepAlive: true
+      },
+      component: (resolve) => require(['../components/layout/center.vue'], resolve)
     }]
   }, {
     path: '/index',

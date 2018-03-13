@@ -51,15 +51,16 @@
       <!-- 头部 /-->
       <!-- 内容部分 -->
       <div class="main-container">
-        <menu-tabs/>
-        <container>
-          <!--<transition name="fade" mode="out-in">-->
-              <!--<router-view></router-view>-->
-          <!--</transition>-->
+        <tabs/>
+        <container >
           <transition name="fade" mode="out-in">
               <router-view></router-view>
+            <!--<ul>-->
+              <!--<li v-for="(item, index) in state.tabs" v-show="item.selected" :key="index">-->
+                <!--<component :is="myIframe" :src="item.content.props.src" :refresh="item.content.props.refresh" :index="index"></component>-->
+              <!--</li>-->
+            <!--</ul>-->
           </transition>
-          <!-- 路由/ -->
         </container>
       </div>
       <!-- 内容部分 /-->
@@ -96,8 +97,11 @@
   import * as mainConst from '../../utils/const';
   import THeader from './THeader.vue';
   import container from './container.vue';
-  import menuTabs from './menuTabs.vue';
+//  import menuTabs from './menuTabs.vue';
+  import tabs from './tabs.vue';
+
   import menus from './menus.vue';
+  import myIframe from '../iframe/iframe.vue';
   import menuShrink from './menuShrink.vue';
   import Cookies from 'js-cookie';
   import {clearStore} from '../../utils/storage';
@@ -109,9 +113,10 @@
       THeader,
 //      NavBar,
       container,
-      menuTabs,
+      tabs,
       menus,
-      menuShrink
+      menuShrink,
+      myIframe
     },
     data() {
       const validatePass = (rule, value, callback) => {
@@ -145,6 +150,7 @@
 //        是否展示左右滑动按钮 默认是false
         scrollBtnShow: false,
         user: {},
+        myIframe: myIframe,
         ruleValidate: {
           authPass: [
             {required: true, message: '密码不能为空', trigger: 'blur'}
