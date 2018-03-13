@@ -129,7 +129,6 @@
         }, 100);
       },
       moveToView(tab) {
-        debugger;
         let curWidth = parseInt(getComputedStyle(this.$refs.elemScroll, null)['width']);
 //        let curLeft = parseInt(getComputedStyle(this.$refs.elemScroll, null)['left']);
         let maxWidth = this.tabsWidth; // 可视区宽度
