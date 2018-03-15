@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import {setStore
-  // , clearStore
+  , clearStore
 } from './utils/storage';
 setStore('env', process.env.NODE_ENV);
 
@@ -35,7 +35,7 @@ window.onresize = function () {
 };
 
 window.onbeforeunload = function () {
-  // clearStore();
+  clearStore();
 };
 
 import zhLocale from 'iview/src/locale/lang/zh-CN';

@@ -33,7 +33,7 @@
 //        return content.split('path=').length > 0;
 //      },
       iframeSrc(content) {
-        let src = mainConst.ADM_INDEX1;
+        let src = '';
         content = decodeURIComponent(content.split('path=')[1]);
         if (content.split('?').length > 1) {
           src = content + '&sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID);

@@ -47,7 +47,7 @@
             return '/portal?name=' + name + '&path=' + url;
           } else {
             deployUrl = deployUrl ? deployUrl : domain();
-            console.log('/portal?name=' + name + '&path=' + deployUrl + '#' + url);
+//            console.log('/portal?name=' + name + '&path=' + deployUrl + '#' + url);
             return '/portal?name=' + name + '&path=' + deployUrl + '#' + url;
           }
 //        },

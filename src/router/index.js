@@ -101,7 +101,7 @@ router.beforeEach((to, from, next) => {
   } else {
     Cookies.set(myconst.ADM_REFER, from.fullPath);
   }
-  console.log(from.fullPath);
+  // console.log(from.fullPath);
   let sessionId = Cookies.get(myconst.ADM_SESSION_ID);
   // 记住密码
   let rememberKey = Cookies.get(myconst.ADM_REMEMBER_ME);

@@ -61,8 +61,6 @@
       },
       select: function (tab) {
         this.$router.push({path: tab.content});
-//        this.$store.dispatch('tabInit', tabs('select', tab));
-//        this.moveEvent();
       },
       close: function (tab) {
         this.$store.dispatch('tabInit', tabs('close', tab));
@@ -131,7 +129,6 @@
       },
       moveToView(tab) {
         let curWidth = parseInt(getComputedStyle(this.$refs.elemScroll, null)['width']);
-//        let curLeft = parseInt(getComputedStyle(this.$refs.elemScroll, null)['left']);
         let maxWidth = this.tabsWidth; // 可视区宽度
         let offsetLeft = tab.offsetLeft; // tab左偏移
 
