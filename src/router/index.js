@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Cookies from 'js-cookie';
-import store from '../store/store';
+// import store from '../store/store';
 import layout from '../components/layout/layout.vue';
 import {resource, user, role, roleResource, log} from '../views/sys';
 import iframe from '../components/iframe';
@@ -26,9 +26,9 @@ const router = new Router({
       },
       component: iframe
     }, {
-      path: '/center',
+      path: '/portal',
       meta: {
-        title: 'center',
+        title: 'portal',
         keepAlive: true
       },
       component: (resolve) => require(['../components/layout/center.vue'], resolve)
@@ -106,7 +106,7 @@ router.beforeEach((to, from, next) => {
   // 记住密码
   let rememberKey = Cookies.get(myconst.ADM_REMEMBER_ME);
   if (sessionId || rememberKey) { // 如果是登陆状态
-    store.dispatch('addTab', to);
+    // store.dispatch('addTab', to);
     if (window !== top) {
       (to.path === '/' || to.path === '/login') ? next({path: '/login'}) : next();
     } else {

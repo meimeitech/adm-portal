@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li v-for="(item, index) in mytabs" v-show="item.selected" :key="index">
-         <component :is="myIframe" :src="item.content.props.src" :refresh="item.content.props.refresh" :index="index"></component>
+         <component :is="myIframe" :src="iframeSrc(item.content)" :refresh="item.refresh" :name="item.name" :index="index"></component>
       </li>
     </ul>
   </div>
@@ -14,6 +14,7 @@
   import iframe from '../iframe/index';
   import Cookies from 'js-cookie';
   import * as mainConst from '../../utils/const';
+
   export default {
     data() {
       return {
@@ -27,23 +28,33 @@
       }
     },
     methods: {
-      toPath(path, name) {
-        let ts = new Date().getTime();
+//      isIframe(content) {
+// //        debugger;
+//        return content.split('path=').length > 0;
+//      },
+      iframeSrc(content) {
         let src = mainConst.ADM_INDEX1;
-        if (path.split('?').length > 1) {
-          src = path + '&sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID) + '&ts=' + ts;
+        content = decodeURIComponent(content.split('path=')[1]);
+        if (content.split('?').length > 1) {
+          src = content + '&sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID);
         } else {
-          src = path + '?sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID) + '&ts=' + ts;
+          src = content + '?sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID);
         }
+        return src;
+      },
+      toPath(path, name) {
         let exists = tabs('exists', name);
         if (exists) {
+          this.$store.dispatch('tabInit', tabs('update', {
+            tab: name,
+            src: path.substring(1, path.length)
+          }));
           this.$store.dispatch('tabInit', tabs('select', name));
         } else {
           this.$store.dispatch('tabInit', tabs('add', {
             title: name,
             closeable: true,
-            component: 'iframe',
-            src: src
+            src: path.substring(1, path.length)
           }));
         }
         this.moveEvent();
@@ -60,7 +71,9 @@
     },
     watch: {
       '$route' (to, from) {
-        this.toPath(decodeURIComponent(window.location.hash.split('path=')[1]), to.query.name);
+//        debugger;
+//        decodeURIComponent(window.location.hash.split('path=')[1])
+        this.toPath(window.location.hash, to.query.name);
       }
     }
   };

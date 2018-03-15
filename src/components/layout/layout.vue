@@ -176,7 +176,7 @@
       this.init();
     },
     created() {
-      this.$store.dispatch('initTab');
+//      this.$store.dispatch('initTab');
     },
     methods: {
       // 查看个人信息密码验证

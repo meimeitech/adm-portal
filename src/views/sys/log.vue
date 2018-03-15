@@ -102,7 +102,7 @@
             title: '操作时间',
             key: 'operTime',
             render: (h, params) => {
-              return dateFormat(new Date(params.row.operTime), 'yyyy-MM-dd hh:mm:ss.S');
+              return h('span', {}, dateFormat(new Date(params.row.operTime), 'yyyy-MM-dd hh:mm:ss.S'));
             }
           },
           {

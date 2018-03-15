@@ -6,6 +6,7 @@
 
 <script type="text/ecmascript-6">
   import tabs from '../../utils/tabs';
+
   export default {
     name: 'myIframe',
     data() {
@@ -26,31 +27,16 @@
         if (!event.data.msg) {
           return;
         }
-//        console.log('receiveMessageFromIframePage', event.data.msg);
         let msg = JSON.parse(event.data.msg);
         if (msg.type === 'add') { // 添加新tab页签
-          if (tabs('exists', msg.data.name)) {
-            this.$store.dispatch('tabInit', tabs('select', msg.data.name));
-            let tab = tabs('getSelected');
-            this.$store.dispatch('tabInit', tabs('update', {
-              tab: tab,
-              src: msg.data.src
-            }));
-          } else {
-            this.$store.dispatch('tabInit', tabs('add', {
-              title: msg.data.name,
-              closeable: true,
-              component: 'iframe',
-              src: msg.data.src
-            }));
-          }
-          this.moveEvent();
+          this.$router.push({path: '/portal?name=' + msg.data.name + '&path=' + msg.data.src});
         } else if (msg.type === 'close') {
           this.$store.dispatch('tabInit', tabs('close', msg.data.name));
           this.moveEvent();
         } else if (msg.type === 'refresh') {
           this.$store.dispatch('tabInit', tabs('update', {
-            tab: msg.data.name
+            tab: msg.data.name,
+            refresh: true
           }));
           this.moveEvent();
         }
@@ -72,10 +58,11 @@
         if (newValue) {
           // 刷新指令
           document.getElementById('external-frame-' + this.index).src = this.src;
+          tabs('refreshDone', this.name);
         }
       }
     },
-    props: ['src', 'refresh', 'index']
+    props: ['src', 'refresh', 'index', 'name']
   };
 </script>
 

@@ -12,17 +12,17 @@
     </div>
     <!--是否全屏  /-->
     <!-- 面包屑 -->
-    <div style="float: left;line-height: 50px;">
-      <Breadcrumb>
-        <!--<Breadcrumb-item v-if="$route.meta.prevLevelName">-->
-          <!--&lt;!&ndash;<Icon type="ios-home-outline"></Icon>&ndash;&gt;-->
-          <!--{{$route.query.prevLevelName}}-->
+    <!--<div style="float: left;line-height: 50px;">-->
+      <!--<Breadcrumb>-->
+        <!--&lt;!&ndash;<Breadcrumb-item v-if="$route.meta.prevLevelName">&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<Icon type="ios-home-outline"></Icon>&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;{{$route.query.prevLevelName}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</Breadcrumb-item>&ndash;&gt;-->
+        <!--<Breadcrumb-item>-->
+          <!--{{$route.query.name}}-->
         <!--</Breadcrumb-item>-->
-        <Breadcrumb-item>
-          {{$route.query.name}}
-        </Breadcrumb-item>
-      </Breadcrumb>
-    </div>
+      <!--</Breadcrumb>-->
+    <!--</div>-->
     <!-- 消息类按钮 -->
     <div class="msg-group-box">
       <slot name='msg-icon'></slot>

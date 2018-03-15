@@ -1,9 +1,9 @@
 import {domain} from './utils';
 
 // portal首页
-export const ADM_INDEX = '/center?name=%E9%A6%96%E9%A1%B5&path=' + domain() + '#/index';
+export const ADM_INDEX = '/portal?name=%E9%A6%96%E9%A1%B5&path=' + domain() + '#/index';
 
-export const ADM_INDEX1 = domain() + '#/index';
+export const ADM_INDEX1 = '/index';
 
 // refer
 export const ADM_REFER = 'refer';

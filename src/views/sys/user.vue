@@ -330,7 +330,7 @@
             fixed: 'left',
             align: 'center',
             render: (h, params) => {
-              return this.data1[params.index].authId;
+              return h('span', {}, this.data1[params.index].authId);
             }
           },
           {
@@ -347,7 +347,7 @@
               } else if (this.data1[params.index].authType === '3') {
                 authType = '昵称认证';
               }
-              return authType;
+              return h('span', {}, authType);
             }
           },
           {
@@ -356,7 +356,7 @@
             align: 'center',
             key: 'loginCount',
             render: (h, params) => {
-              return this.data1[params.index].loginCount;
+              return h('span', {}, this.data1[params.index].loginCount);
             }
           },
           {
@@ -365,7 +365,7 @@
             align: 'center',
             key: 'lastLoginTime',
             render: (h, params) => {
-              return dateUtil.format(this.data1[params.index].lastLoginTime, 'yyyy-MM-dd');
+              return h('span', {}, dateUtil.format(this.data1[params.index].lastLoginTime, 'yyyy-MM-dd'));
             }
           },
           {
@@ -374,7 +374,7 @@
             align: 'center',
             key: 'passTime',
             render: (h, params) => {
-              return dateUtil.format(this.data1[params.index].passTime, 'yyyy-MM-dd HH:mm:ss');
+              return h('span', {}, dateUtil.format(this.data1[params.index].passTime, 'yyyy-MM-dd HH:mm:ss'));
             }
           }, {
             title: '创建时间',
@@ -382,7 +382,7 @@
             align: 'center',
             key: 'createTime',
             render: (h, params) => {
-              return dateUtil.format(this.data1[params.index].createTime, 'yyyy-MM-dd HH:mm:ss');
+              return h('span', {}, dateUtil.format(this.data1[params.index].createTime, 'yyyy-MM-dd HH:mm:ss'));
             }
           },
           {
@@ -429,7 +429,7 @@
             key: 'name',
             align: 'center',
             render: (h, params) => {
-              return this.data6[params.index].realName;
+              return h('span', {}, this.data6[params.index].realName);
             }
           },
           {
@@ -437,8 +437,7 @@
             key: 'gender',
             align: 'center',
             render: (h, params) => {
-              let gender = this.data6[params.index].gender === '0' ? '男' : '女';
-              return gender;
+              return h('span', {}, this.data6[params.index].gender === '0' ? '男' : '女');
             }
           },
           {
@@ -446,7 +445,7 @@
             key: 'phone',
             align: 'center',
              render: (h, params) => {
-               return this.data6[params.index].phone;
+               return h('span', {}, this.data6[params.index].phone);
              }
           },
           {
@@ -459,7 +458,7 @@
               for (var i = 0; i < length; i++) {
                 roles += this.data6[params.index].roles[i].name + ',';
               };
-              return roles.substring(0, roles.length - 1);
+              return h('span', {}, roles.substring(0, roles.length - 1));
             }
           },
           {

@@ -60,8 +60,9 @@
         });
       },
       select: function (tab) {
-        this.$store.dispatch('tabInit', tabs('select', tab));
-        this.moveEvent();
+        this.$router.push({path: tab.content});
+//        this.$store.dispatch('tabInit', tabs('select', tab));
+//        this.moveEvent();
       },
       close: function (tab) {
         this.$store.dispatch('tabInit', tabs('close', tab));

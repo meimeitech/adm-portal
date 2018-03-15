@@ -31,6 +31,9 @@ export const formator = (val, digits) => {
 };
 
 export const dateFormat = (date, fmt) => {
+  if (!date) {
+    return;
+  }
   var o = {
     'M+': date.getMonth() + 1,
     'd+': date.getDate(),

@@ -8,8 +8,7 @@
         </template>
         <my-menu :menus="item.children" :level="level*1 + 1" v-bind:class="activeClass + level"></my-menu>
       </Submenu>
-      <Menu-item :name="routerFilter(item.deployUrl, item.url, item.name)"
-                 @click.native="handleClick(item.deployUrl, item.url, item.name)" v-else>
+      <Menu-item :name="routerFilter(item.deployUrl, item.url, item.name)" v-else>
         <Icon :type="item.icon?item.icon:'chevron-right'"></Icon>
         <span class="menu-ellipsis">{{item.name}}</span>
       </Menu-item>
@@ -20,6 +19,7 @@
 <script type="text/ecmascript-6">
   /* eslint-disable no-unneeded-ternary */
   import {domain} from '../../utils/utils';
+//  import tabs from '../../utils/tabs';
   import menu from './menu.vue';
   export default {
     name: 'my-menu',
@@ -43,11 +43,33 @@
         },
         routerFilter(deployUrl, url, name) {
           if (url && (url.indexOf('http://') >= 0 || url.indexOf('https://') >= 0)) {
-            return '/center?name=' + name + '&path=' + url;
+//            console.log('/portal?name=' + name + '&path=' + url);
+            return '/portal?name=' + name + '&path=' + url;
           } else {
             deployUrl = deployUrl ? deployUrl : domain();
-            return '/center?name=' + name + '&path=' + deployUrl + '#' + url;
+            console.log('/portal?name=' + name + '&path=' + deployUrl + '#' + url);
+            return '/portal?name=' + name + '&path=' + deployUrl + '#' + url;
           }
+//        },
+//        handleClick (deployUrl, url, name) {
+//          if (url && (url.indexOf('http://') >= 0 || url.indexOf('https://') >= 0)) {
+//            return true;
+//          }
+//          if (deployUrl) {
+//            return true;
+//          }
+//            console.log(url);
+//          let exists = tabs('exists', name);
+//          if (exists) {
+//            this.$store.dispatch('tabInit', tabs('select', name));
+//          } else {
+//            this.$store.dispatch('tabInit', tabs('add', {
+//              title: name,
+//              closeable: true,
+//              src: url
+//            }));
+//          }
+//          this.moveEvent();
         }
     },
     components: {

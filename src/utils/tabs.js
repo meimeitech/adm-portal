@@ -1,21 +1,13 @@
 import {getStore, setStore} from '../utils/storage';
 import * as mainConst from '../utils/const';
-import iframe from '../components/iframe';
 
 let defaultTabs = [{
   // type: 'vueRouter',
   title: '首页',
   closeable: false,
   selected: true,
-  content: {
-    component: iframe, // 组件
-    props: {
-      src: mainConst.ADM_INDEX
-    }
-  },
-  params: {
-    prevLevelName: '首页' // 上级菜单名称
-  }
+  content: mainConst.ADM_INDEX,
+  params: {}
 }];
 
 let methods = {
@@ -31,17 +23,9 @@ let methods = {
       // type: options.type,
       title: options.title, // tab主键
       closeable: options.closeable,
+      content: options.src, // iframe
       // fullPath: options.fullPath,
-      content: {
-        component: options.component, // 组件
-        props: {
-          src: options.src
-        }
-      },
-      params: {// 其他参数
-        prevLevelName: '首页',
-        title: options.title
-      }
+      params: {} // 其他参数
     };
     tabs.push(tab);
     return this.select(tabs, tab);
@@ -95,19 +79,19 @@ let methods = {
       tab = getTab(tabs, tab);
     }
 
-    if (options.src) {
-      tab.content.props.src = options.src;
-      tab.content.props.refresh = true;
+    if (options.src && tab.content !== options.src) {
+      tab.content = options.src;
+      tab.refresh = true;
       let index = getTabIndex(tabs, tab);
       tabs[index] = tab;
-    } else {
+    } else if (options.refresh) {
       let ts = new Date();
-      if (tab.content.props.src.split('?').length > 1) {
-        tab.content.props.src = tab.content.props.src + '&ts=' + ts;
+      if (tab.content.split('?').length > 1) {
+        tab.content = tab.content + '&ts=' + ts;
       } else {
-        tab.content.props.src = tab.content.props.src + '?ts=' + ts;
+        tab.content = tab.content + '?ts=' + ts;
       }
-      tab.content.props.refresh = true;
+      tab.refresh = true;
       let index = getTabIndex(tabs, tab);
       tabs[index] = tab;
     }
@@ -119,6 +103,15 @@ let methods = {
   },
   getSelectedTabIndex: function (tabs) {
     return getSelectedTabIndex(tabs);
+  },
+  refreshDone: function (tabs, tab) {
+    if (typeof tab === 'string') {
+      tab = getTab(tabs, tab);
+    }
+    tab.refresh = false;
+    let index = getTabIndex(tabs, tab);
+    tabs[index] = tab;
+    setStore('tabs', JSON.stringify(tabs));
   }
 };
 
