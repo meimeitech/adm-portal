@@ -20,19 +20,6 @@
       <!-- 头部 -->
       <t-header>
         <!-- 用户信息   -->
-        <!--<div class="userBox" slot='right'>-->
-          <!--&lt;!&ndash;<Avatar class="user-head" icon="person"></Avatar>&ndash;&gt;-->
-          <!--<Dropdown transfer class="user-drop">-->
-            <!--<a href="javascript:void(0)">-->
-              <!--{{state.system}}-->
-              <!--<Icon type="arrow-down-b"></Icon>-->
-            <!--</a>-->
-            <!--<Dropdown-menu slot="list">-->
-              <!--<Dropdown-item>数据平台</Dropdown-item>-->
-              <!--<Dropdown-item>报表平台</Dropdown-item>-->
-            <!--</Dropdown-menu>-->
-          <!--</Dropdown>-->
-        <!--</div>-->
         <div class="userBox" slot='right'>
           <Avatar class="user-head" icon="person"></Avatar>
           <Dropdown transfer class="user-drop">
@@ -55,11 +42,6 @@
         <container >
           <transition name="fade" mode="out-in">
               <router-view></router-view>
-            <!--<ul>-->
-              <!--<li v-for="(item, index) in state.tabs" v-show="item.selected" :key="index">-->
-                <!--<component :is="myIframe" :src="item.content.props.src" :refresh="item.content.props.refresh" :index="index"></component>-->
-              <!--</li>-->
-            <!--</ul>-->
           </transition>
         </container>
       </div>
@@ -97,11 +79,9 @@
   import * as mainConst from '../../utils/const';
   import THeader from './THeader.vue';
   import container from './container.vue';
-//  import menuTabs from './menuTabs.vue';
   import tabs from './tabs.vue';
 
   import menus from './menus.vue';
-  import myIframe from '../iframe/iframe.vue';
   import menuShrink from './menuShrink.vue';
   import Cookies from 'js-cookie';
   import {clearStore} from '../../utils/storage';
@@ -115,8 +95,7 @@
       container,
       tabs,
       menus,
-      menuShrink,
-      myIframe
+      menuShrink
     },
     data() {
       const validatePass = (rule, value, callback) => {
@@ -150,7 +129,6 @@
 //        是否展示左右滑动按钮 默认是false
         scrollBtnShow: false,
         user: {},
-        myIframe: myIframe,
         ruleValidate: {
           authPass: [
             {required: true, message: '密码不能为空', trigger: 'blur'}

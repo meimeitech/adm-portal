@@ -11,7 +11,7 @@
 <script type="text/ecmascript-6">
   /* eslint-disable no-unneeded-ternary */
   import tabs from '../../utils/tabs';
-  import iframe from '../iframe/index';
+  import iframe from './iframe.vue';
   import Cookies from 'js-cookie';
   import * as mainConst from '../../utils/const';
 

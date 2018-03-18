@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 // import store from '../store/store';
 import layout from '../components/layout/layout.vue';
 import {resource, user, role, roleResource, log} from '../views/sys';
-import iframe from '../components/iframe';
+import iframe from '../components/center/index';
 import {index, login, _404} from '../views';
 import * as myconst from '../utils/const';
 // import {LoadingBar} from 'iview';
@@ -19,19 +19,12 @@ const router = new Router({
     },
     component: layout,
     children: [{
-      path: '/iframe',
-      meta: {
-        title: 'iframe',
-        keepAlive: true
-      },
-      component: iframe
-    }, {
       path: '/portal',
       meta: {
         title: 'portal',
         keepAlive: true
       },
-      component: (resolve) => require(['../components/layout/center.vue'], resolve)
+      component: (resolve) => require(['../components/center/center.vue'], resolve)
     }]
   }, {
     path: '/index',
