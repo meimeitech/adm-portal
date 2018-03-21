@@ -62,7 +62,7 @@
     methods: {
       init: async function () {
         this.roleResources = this.$route.query.roleResources;
-        let res = await resourceList(this.$store.state.app.baseUrl);
+        let res = await resourceList({system: this.$store.state.app.system}, this.$store.state.app.baseUrl);
         this.resources = res.body;
       }
     },

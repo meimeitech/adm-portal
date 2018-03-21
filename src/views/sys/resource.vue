@@ -165,7 +165,7 @@
     },
     methods: {
       init: async function () {
-        let res = await resourceList(this.$store.state.app.baseUrl);
+        let res = await resourceList({system: this.$store.state.app.system}, this.$store.state.app.baseUrl);
         this.dataAdapter(res.body);
         this.resources = res.body;
       },
