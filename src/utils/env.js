@@ -9,7 +9,7 @@ const getBaseUrl = function (env) {
   if (env === 'dev') { // 开发环境
     baseUrl = 'http://10.133.255.201:7031';
   } else if (env === 'test') { // 测试环境
-    baseUrl = 'http://10.133.255.201:7031';
+    baseUrl = 'https://api-test.meimeitech.com';
   } else if (env === 'pre') { // 预生产环境
     baseUrl = 'https://api-pre.meimeitech.com';
   } else if (env === 'prod') { // 生产环境
@@ -23,7 +23,7 @@ const getLoginUrl = function (env) {
   if (env === 'dev') { // 开发环境
     // loginUrl = 'http://10.133.255.201:5001/pc/portal/index.html#/login';
   } else if (env === 'test') { // 测试环境
-    loginUrl = 'http://10.133.255.201:5001/pc/portal/index.html#/login';
+    loginUrl = 'http://10.143.36.63/pc/portal-mm2c/index.html#/login';
     // loginUrl = 'https://static-test.meimeitech.com/pc/portal/index.html#/login';
   } else if (env === 'pre') { // 预生产环境
     loginUrl = 'https://static-pre.meimeitech.com/pc/portal/index.html#/login';
