@@ -1,49 +1,51 @@
 <template>
   <div class="large-header" id="home">
-    <canvas id="canvas" class="canvas"></canvas>
-    <div class="lg-txt-pic">
-      <img src="../../static/img/lg-txt-pic1.png" alt="">
-    </div>
-    <div class="login-box">
-      <div class="account-box" v-show="account">
-        <!--<div class="top">
-          <span class="lg-title">登录</span><span class="sign-title">SIGN IN</span>
-        </div>-->
-        <Form class="login-form" ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="50">
-          <Form-item prop="username" label="账号">
-            <Input type="text" v-model="formValidate.username" placeholder="用户名"
-                   @on-enter="handleSubmit('formValidate')"></Input>
-          </Form-item>
+    <img src="../../static/img/lg-bg1.png" alt="">
+    <div class="clearfix">
+      <div class="lg-txt-pic">
+        <img src="../../static/img/lg-txt-pic1.png" alt="">
+      </div>
+      <div class="login-box">
+        <div class="account-box" v-show="account">
+          <!--<div class="top">
+            <span class="lg-title">登录</span><span class="sign-title">SIGN IN</span>
+          </div>-->
+          <Form class="login-form" ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="50">
+            <Form-item prop="username" label="账号">
+              <Input type="text" v-model="formValidate.username" placeholder="用户名"
+                     @on-enter="handleSubmit('formValidate')"></Input>
+            </Form-item>
 
-          <Form-item prop="password" label="密码">
-            <Input type="password" v-model="formValidate.password" placeholder="密码"
-                   @on-enter="handleSubmit('formValidate')"></Input>
-          </Form-item>
+            <Form-item prop="password" label="密码">
+              <Input type="password" v-model="formValidate.password" placeholder="密码"
+                     @on-enter="handleSubmit('formValidate')"></Input>
+            </Form-item>
 
-          <!--<Form-item prop="remember">-->
-          <!--<Checkbox-group v-model="formValidate.remember">-->
-          <!--<Checkbox label="记住我"></Checkbox>-->
-          <!--</Checkbox-group>-->
-          <!--</Form-item>-->
+            <!--<Form-item prop="remember">-->
+            <!--<Checkbox-group v-model="formValidate.remember">-->
+            <!--<Checkbox label="记住我"></Checkbox>-->
+            <!--</Checkbox-group>-->
+            <!--</Form-item>-->
 
-          <!--<div class="login-loading" v-show="login_loading">-->
-          <!--<Spin fix class="spin">-->
-          <!--<Icon type="load-c" size=18   class="spin-icon-load"></Icon>-->
-          <!--<div>登陆中...</div>-->
-          <!--</Spin>-->
-          <!--</div>-->
+            <!--<div class="login-loading" v-show="login_loading">-->
+            <!--<Spin fix class="spin">-->
+            <!--<Icon type="load-c" size=18   class="spin-icon-load"></Icon>-->
+            <!--<div>登陆中...</div>-->
+            <!--</Spin>-->
+            <!--</div>-->
 
-          <Form-item class="btn">
-            <Button type="primary" :loading="login_loading" @click="handleSubmit('formValidate')">
-              <span v-if="!login_loading">提交</span>
-              <span v-else>登陆中...</span>
-            </Button>
-          </Form-item>
+            <Form-item class="btn">
+              <Button type="primary" :loading="login_loading" @click="handleSubmit('formValidate')">
+                <span v-if="!login_loading">提交</span>
+                <span v-else>登陆中...</span>
+              </Button>
+            </Form-item>
 
-        </Form>
+          </Form>
+
+        </div>
 
       </div>
-
     </div>
   </div>
 </template>
@@ -143,7 +145,6 @@
       }
     },
     mounted() {
-//      canvas();
     }
   };
 </script>
@@ -158,86 +159,91 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-    background-image: url('../../static/img/lg-bg1.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    .lg-txt-pic {
-      width: 468px;
+    > img {
+      height: 1080px;
       position: absolute;
-      top: 30%;
-      left: 26%;
-      border-radius: 8px;
-      img {
-        width: 100%;
-        display: block;
-      }
+      left: 50%;
+      margin-left: -960px;
+      top: 0;
     }
-    .login-box {
-      padding: 0 30px;
-      position: absolute;
-      right: 18%;
-      top: 23%;
-      background-color: #fff;
-      box-shadow: 0 0 20px 0 rgba(20, 15, 89, 0.30);
-      border-radius: 8px;
-      .account-box {
-        margin-top: 58px;
-        .ivu-form .ivu-form-item-label {
-          font-size: 14px;
-          color: #333333;
-          letter-spacing: 1.05px;
-          height: 40px;
-          line-height: 40px;
-          box-sizing: border-box;
-          padding: 0px 12px 10px 0;
-          &:before {
-            content: '';
-          }
+    > div {
+      width: 1000px;
+      margin: 200px auto 0;
+      position: relative;
+      .lg-txt-pic {
+        width: 468px;
+        float: left;
+        border-radius: 8px;
+        margin-top: 50px;
+        img {
+          width: 100%;
+          display: block;
         }
-        .ivu-input {
-          width: 160px;
-          height: 40px;
-          outline: none;
-          background-color: #fff!important;
-          font-size: 14px;
-          color: #333333;
-          letter-spacing: 1.05px;
-          border-radius: 0;
-          border: 1px solid #999;
-          &:focus {
+      }
+      .login-box {
+        padding: 0 30px;
+        float: right;
+        background-color: #fff;
+        box-shadow: 0 0 20px 0 rgba(20, 15, 89, 0.30);
+        border-radius: 8px;
+        .account-box {
+          margin-top: 58px;
+          .ivu-form .ivu-form-item-label {
+            font-size: 14px;
+            color: #333333;
+            letter-spacing: 1.05px;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            padding: 0px 12px 10px 0;
+            &:before {
+              content: '';
+            }
+          }
+          .ivu-input {
+            width: 160px;
+            height: 40px;
             outline: none;
+            background-color: #fff!important;
+            font-size: 14px;
+            color: #333333;
+            letter-spacing: 1.05px;
+            border-radius: 0;
+            border: 1px solid #999;
+            &:focus {
+              outline: none;
+            }
           }
-        }
-        .btn {
-          margin-bottom: 30px;
-          .ivu-form-item-content {
-            margin-left: 0!important;
-            .ivu-btn-primary {
-              width: 100%;
-              margin: 32px auto 0;
-              height: 40px;
-              display: block;
-              font-size: 18px;
-              color: #FFFFFF;
-              letter-spacing: 1.35px;
-              border-radius: 0;
+          .btn {
+            margin-bottom: 30px;
+            .ivu-form-item-content {
+              margin-left: 0!important;
+              .ivu-btn-primary {
+                width: 100%;
+                margin: 32px auto 0;
+                height: 40px;
+                display: block;
+                font-size: 18px;
+                color: #FFFFFF;
+                letter-spacing: 1.35px;
+                border-radius: 0;
+              }
             }
           }
         }
       }
-    }
 
-    .login-loading {
-      position: relative;
-      width: 330px;
-      height: 48px;
-      background-color: #27A9E3;
-      color: white;
-
-      .spin {
+      .login-loading {
+        position: relative;
+        width: 330px;
+        height: 48px;
         background-color: #27A9E3;
-        color: white
+        color: white;
+
+        .spin {
+          background-color: #27A9E3;
+          color: white
+        }
       }
     }
     .spin-icon-load {
