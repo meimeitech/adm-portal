@@ -11,7 +11,7 @@
 <script type="text/ecmascript-6">
   /* eslint-disable no-unneeded-ternary */
   import tabs from '../../utils/tabs';
-  import iframe from '../iframe/index';
+  import iframe from './iframe.vue';
   import Cookies from 'js-cookie';
   import * as mainConst from '../../utils/const';
 
@@ -36,9 +36,9 @@
         let src = '';
         content = decodeURIComponent(content.split('path=')[1]);
         if (content.split('?').length > 1) {
-          src = content + '&sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID);
+          src = content + '&sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID) + '&loginUrl=' + window.location.href.split('#')[0] + '#/login';
         } else {
-          src = content + '?sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID);
+          src = content + '?sessionId=' + Cookies.get(mainConst.ADM_SESSION_ID) + '&loginUrl=' + window.location.href.split('#')[0] + '#/login';
         }
         return src;
       },

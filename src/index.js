@@ -4,7 +4,8 @@ import layout from './components/layout';
 import utils from './utils';
 // 公共组件
 import {resource, user, role, roleResource, log} from './views/sys';
-import iframe from './components/iframe';
+// import iframe from './components/iframe';
+import center from './components/center';
 import {index, login, _404} from './views';
 // 公共Vuex模块
 import app from './store';
@@ -15,7 +16,7 @@ let AdmPortal = {
   role: role,
   roleResource: roleResource,
   log: log,
-  iframe: iframe,
+  center: center,
   index: index,
   login: login,
   _404: _404
@@ -33,5 +34,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export {
-  layout, resource, user, role, roleResource, log, iframe, index, login, _404, utils, app
+  layout, resource, user, role, roleResource, log, center, index, login, _404, utils, app
 };

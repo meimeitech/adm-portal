@@ -42,7 +42,7 @@ export const roleResources = (data, baseUrl) => fetch(PLATFORM_SYS + '/role/set'
 
 export const roleDelete = (data, baseUrl) => fetch(PLATFORM_SYS + '/role/delete/' + data.id, {baseUrl: baseUrl}, 'POST');
 
-export const resourceList = (baseUrl) => fetch(PLATFORM_SYS + '/resource/list', {baseUrl: baseUrl}, 'POST');
+export const resourceList = (data, baseUrl) => fetch(PLATFORM_SYS + '/resource/list', {baseUrl: baseUrl, reqParams: data}, 'POST');
 
 export const resourceGet = (data, baseUrl) => fetch(PLATFORM_SYS + '/resource/get/' + data.id, {baseUrl: baseUrl}, 'GET');
 
