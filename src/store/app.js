@@ -78,6 +78,9 @@ const app = {
     },
     TABS_SELECTED_INDEX: (state, index) => {
       state.tabSelectedIndex = index;
+    },
+    SET_LOGIN_URL: (state, url) => {
+      state.loginUrl = url;
     }
   },
   actions: {
@@ -96,6 +99,9 @@ const app = {
     },
     tabSelectedIndex: ({commit}, index) => {
       commit('TABS_SELECTED_INDEX', index);
+    },
+    setLoginUrl: ({commit}, url) => {
+      commit('SET_LOGIN_URL', url);
     }
   }
 };
