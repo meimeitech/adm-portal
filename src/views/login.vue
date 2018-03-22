@@ -1,37 +1,39 @@
 <template>
   <div class="large-header" id="home">
     <canvas id="canvas" class="canvas"></canvas>
-    <div class="lg-txt-pic"></div>
+    <div class="lg-txt-pic">
+      <img src="../../static/img/lg-txt-pic1.png" alt="">
+    </div>
     <div class="login-box">
       <div class="account-box" v-show="account">
-        <div class="top">
+        <!--<div class="top">
           <span class="lg-title">登录</span><span class="sign-title">SIGN IN</span>
-        </div>
-        <Form class="login-form" ref="formValidate" :model="formValidate" :rules="ruleValidate">
-          <Form-item prop="username">
+        </div>-->
+        <Form class="login-form" ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="50">
+          <Form-item prop="username" label="账号">
             <Input type="text" v-model="formValidate.username" placeholder="用户名"
                    @on-enter="handleSubmit('formValidate')"></Input>
           </Form-item>
 
-          <Form-item prop="password">
+          <Form-item prop="password" label="密码">
             <Input type="password" v-model="formValidate.password" placeholder="密码"
                    @on-enter="handleSubmit('formValidate')"></Input>
           </Form-item>
 
           <!--<Form-item prop="remember">-->
-            <!--<Checkbox-group v-model="formValidate.remember">-->
-              <!--<Checkbox label="记住我"></Checkbox>-->
-            <!--</Checkbox-group>-->
+          <!--<Checkbox-group v-model="formValidate.remember">-->
+          <!--<Checkbox label="记住我"></Checkbox>-->
+          <!--</Checkbox-group>-->
           <!--</Form-item>-->
 
           <!--<div class="login-loading" v-show="login_loading">-->
-            <!--<Spin fix class="spin">-->
-              <!--<Icon type="load-c" size=18   class="spin-icon-load"></Icon>-->
-              <!--<div>登陆中...</div>-->
-            <!--</Spin>-->
+          <!--<Spin fix class="spin">-->
+          <!--<Icon type="load-c" size=18   class="spin-icon-load"></Icon>-->
+          <!--<div>登陆中...</div>-->
+          <!--</Spin>-->
           <!--</div>-->
 
-          <Form-item>
+          <Form-item class="btn">
             <Button type="primary" :loading="login_loading" @click="handleSubmit('formValidate')">
               <span v-if="!login_loading">提交</span>
               <span v-else>登陆中...</span>
@@ -131,10 +133,10 @@
             }
           } else {
             this.$Message.error('表单验证失败!');
-              this.$Notice.warning({
-                title: '登录提示',
-                desc: '用户名/密码 输入有误.'
-              });
+            this.$Notice.warning({
+              title: '登录提示',
+              desc: '用户名/密码 输入有误.'
+            });
           }
           this.login_loading = false;
         });
@@ -146,6 +148,7 @@
   };
 </script>
 <style lang="less">
+
   .login_body {
     width: 100%;
     height: 100%;
@@ -155,112 +158,72 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-    background-image: url('../../static/img/lg-bg.jpg');
+    background-image: url('../../static/img/lg-bg1.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    .lg-txt-pic{
+    .lg-txt-pic {
+      width: 468px;
       position: absolute;
-      top:28%;
-      left:7%;
-      background-image: url('../../static/img/lg-txt-pic.png');
-      background-position: 22% 48%;
-      background-repeat: no-repeat;
-      background-size:40% 20%;
-      background-color: rgba(255, 255, 255,0.5);
-      background-attachment:fixed;
+      top: 30%;
+      left: 26%;
       border-radius: 8px;
-
-      width: 86%;
-      height: 308px;
+      img {
+        width: 100%;
+        display: block;
+      }
     }
     .login-box {
-      width: 380px;
-      min-height: 400px;
-      background-color: #F8F9FA;
+      padding: 0 30px;
       position: absolute;
-      top: 22%;
-      left: 60%;
-      /*transform: translate(-50%, -50%);*/
-      /*margin: 0 auto;*/
+      right: 18%;
+      top: 23%;
+      background-color: #fff;
+      box-shadow: 0 0 20px 0 rgba(20, 15, 89, 0.30);
       border-radius: 8px;
-      opacity: .95;
-      border: 1px solid #dedede;
-
-      .top {
-        height: 40px;
-        margin-top: 50px;
-        margin-bottom: 25px;
-        line-height: 40px;
-
-        .lg-title{
-          font-size: 28px;
-          font-family: PingFangSC-Regular;
-          color: #5583FF;
-        }
-        .sign-title{
-          font-family: ArialMT;
-          font-size: 14px;
-          color: #999999;
-          letter-spacing: 0;
-          font-size: 14px;
-          margin-left: 12px;
-        }
-      }
       .account-box {
-        text-align: left;
-        margin-left: 25px;
-        margin-right: 25px;
-        height: 310px;
-        .login-form{
-          background: #EAEAEC;
-          border-radius: 4px;
-          margin-top: 20px;
-          .ivu-form-item{
-            padding-left: 10px;
-            padding-top: 24px;
-            padding-right: 10px;
-            margin-bottom: 0;
-            &:last-child{
-              padding-left: 0;
-              padding-right: 0;
-            }
+        margin-top: 58px;
+        .ivu-form .ivu-form-item-label {
+          font-size: 14px;
+          color: #333333;
+          letter-spacing: 1.05px;
+          height: 40px;
+          line-height: 40px;
+          box-sizing: border-box;
+          padding: 0px 12px 10px 0;
+          &:before {
+            content: '';
           }
         }
         .ivu-input {
-          border: 1px solid #f4f4f4;
-          vertical-align: middle;
-          border-radius: 3px;
+          width: 160px;
           height: 40px;
-          padding: 0 14px;
+          outline: none;
+          background-color: #fff!important;
           font-size: 14px;
-          color: #555555;
-          outline: none;
+          color: #333333;
+          letter-spacing: 1.05px;
+          border-radius: 0;
+          border: 1px solid #999;
+          &:focus {
+            outline: none;
+          }
         }
-        .ivu-btn-primary {
-          display: block;
-          padding: 9px;
-          font-size: 16px;
-          line-height: 22px;
-          text-align: center;
-          white-space: nowrap;
-          vertical-align: middle;
-          cursor: pointer;
-          color: #ffffff;
-          background-color: #5583FF;
-          border-radius: 0 0 3px 3px;
-          border: none;
-          -webkit-appearance: none;
-          outline: none;
-          width: 330px;
-        }
-        .code-img {
-          position: absolute;
-          top: 0;
-          right: 25px;
-          width: 140px;
-          height: 50px;
-          cursor: pointer;
+        .btn {
+          margin-bottom: 30px;
+          .ivu-form-item-content {
+            margin-left: 0!important;
+            .ivu-btn-primary {
+              width: 100%;
+              margin: 32px auto 0;
+              height: 40px;
+              display: block;
+              font-size: 18px;
+              color: #FFFFFF;
+              letter-spacing: 1.35px;
+              border-radius: 0;
+            }
+          }
         }
       }
     }
