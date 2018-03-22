@@ -4,8 +4,10 @@
     <div class="side-wrapper" :class="{hover:!state.sidebar.minOpened,light:theme=='light'}">
       <!-- logo -->
       <div class="logo-box">
-        <img v-if="state.sidebar.opened == '0'" src="../../assets/img/logo.png" width="24" height="26" alt=""/>
-        <img v-if="state.sidebar.opened == '1'" src="../../assets/img/logo-open.png" width="84" height="20" alt=""/>
+        <!--<img v-if="state.sidebar.opened == '0'" src="../../assets/img/logo.png" width="24" height="26" alt=""/>-->
+        <!--<img v-if="state.sidebar.opened == '1'" src="../../assets/img/logo-open.png" width="84" height="20" alt=""/>-->
+        <!--<img src="../../assets/img/logo.png" width="20" height="20" alt=""/>-->
+        <span v-if="state.sidebar.opened == '1'" style="color: rgba(255, 255, 255, 0.7);font-size: 18px;margin-left: 10px;">综合业管</span>
       </div>
       <!-- logo /-->
       <!-- 左侧导航 -->
